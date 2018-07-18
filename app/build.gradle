@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
-
+def root = rootProject.ext;
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.app.mvvm_model"
-        minSdkVersion 21
-        targetSdkVersion 26
+        applicationId root.configuration.package
+        minSdkVersion root.configuration.minSdkVersion
+        targetSdkVersion root.configuration.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -15,13 +15,48 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-}
+dependencies
+        {
+            // implementation fileTree(dir: 'libs', include: ['*.jar'])
+            implementation root.supportDependencies.design
+            implementation root.supportDependencies.appcompat
+            implementation root.supportDependencies.recyclerview
+            // Lifecycle arch
+            implementation root.GoogleLifeArchDependancies.runtime
+            implementation root.GoogleLifeArchDependancies.extension
+            annotationProcessor root.GoogleLifeArchDependancies.compiler
+            // Room
+            implementation root.RoomDependancies.runtime
+            implementation root.RoomDependancies.rxAdapter
+            annotationProcessor root.RoomDependancies.compiler
+            // Retrofit & OkHttp
+            implementation root.squareDependencies.retrofit
+            implementation root.squareDependencies.adapter_rx_java
+            implementation root.squareDependencies.converter_gson
+            implementation root.squareDependencies.okHttp
+            implementation root.squareDependencies.okHttpLoging
+            // ButterKnife
+            implementation root.butterKnifeDependacies.butterKnife
+            annotationProcessor root.butterKnifeDependacies.butterKnifeCompiler
+
+            // Dagger
+            implementation root.injectionDependencies.dagger2
+            implementation root.injectionDependencies.dagger2Android
+            implementation root.injectionDependencies.dagger2AndroidSupport
+            annotationProcessor root.injectionDependencies.dagger2Compiler
+            annotationProcessor root.injectionDependencies.daggerAndroidProcessor
+            provided root.injectionDependencies.glassfish
+
+            // RxJava
+            implementation root.reactiveDependencies.rxandroid
+            implementation root.reactiveDependencies.rxjava
+
+        }
