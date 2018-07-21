@@ -1,5 +1,7 @@
 package com.app.mvvm_model.usecase;
 
+import android.support.annotation.VisibleForTesting;
+
 import com.app.mvvm_model.data.model.Movie;
 import com.app.mvvm_model.usecase.local.Local;
 import com.app.mvvm_model.usecase.remote.Remote;
@@ -18,8 +20,9 @@ import static com.app.mvvm_model.utils.Constants.UNSUPPORTED_OPERATION;
  */
 
 public class MovieUseCase implements MovieDataSource {
-    MovieDataSource localDataSource;
-    MovieDataSource remoteDataSource;
+    private MovieDataSource localDataSource;
+    private MovieDataSource remoteDataSource;
+    @VisibleForTesting
     List<Movie> caches;
 
     @Inject

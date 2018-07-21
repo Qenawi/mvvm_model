@@ -1,10 +1,10 @@
 package com.app.mvvm_model.injection.movie;
 
-        import com.app.mvvm_model.injection.rx.SchedulerModule;
-        import com.app.mvvm_model.presentation.base.ActivityScope;
-        import com.app.mvvm_model.presentation.sup.Movies.MoviesActivity;
+import com.app.mvvm_model.injection.rx.SchedulerModule;
+import com.app.mvvm_model.presentation.base.ActivityScope;
+import com.app.mvvm_model.presentation.sup.Movies.MoviesActivity;
 
-        import dagger.Component;
+import dagger.Component;
 
 /**
  * Created by Andorid-win on 7/18/2018.

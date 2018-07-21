@@ -1,5 +1,6 @@
 package com.app.mvvm_model.injection.service;
 
+import com.app.mvvm_model.data.api.MovieService;
 import com.app.mvvm_model.data.api.interceptor.HeaderInterceptor;
 import com.app.mvvm_model.utils.Constants;
 
@@ -79,5 +80,10 @@ public class ApiServiceModule
 
     /* Specific services */
 
-
+    @Provides
+    @Singleton
+    MovieService provideMovieService(Retrofit retrofit)
+    {
+        return retrofit.create(MovieService.class);
+    }
 }

@@ -1,7 +1,9 @@
 package com.app.mvvm_model.injection.movie;
 
+import com.app.mvvm_model.usecase.MovieDataSource;
 import com.app.mvvm_model.usecase.local.Local;
 import com.app.mvvm_model.usecase.local.MovieLocalDataSource;
+import com.app.mvvm_model.usecase.remote.MovieRemoteDataSource;
 import com.app.mvvm_model.usecase.remote.Remote;
 
 import javax.inject.Singleton;
@@ -18,15 +20,15 @@ public class MovieInteractorModule
     @Provides
     @Local
     @Singleton
-    public MovieLocalDataSource provideLocalDataSource(MovieLocalDataSource questionLocalDataSource) {
-        return questionLocalDataSource;
+    public MovieDataSource provideLocalDataSource(MovieLocalDataSource movieLocalDataSource) {
+        return movieLocalDataSource;
     }
 
     @Provides
     @Remote
     @Singleton
-    public MovieLocalDataSource provideRemoteDataSource(MovieLocalDataSource questionRemoteDataSource) {
-        return questionRemoteDataSource;
+    public MovieDataSource provideRemoteDataSource(MovieRemoteDataSource movieRemoteDataSource) {
+        return movieRemoteDataSource;
     }
 
 

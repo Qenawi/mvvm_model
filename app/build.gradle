@@ -25,10 +25,15 @@ android {
 
 dependencies
         {
+
+            implementation root.supportDependencies.constraintLayout
+
             // implementation fileTree(dir: 'libs', include: ['*.jar'])
             implementation root.supportDependencies.design
             implementation root.supportDependencies.appcompat
             implementation root.supportDependencies.recyclerview
+            implementation root.supportDependencies.cardview
+
             // Lifecycle arch
             implementation root.GoogleLifeArchDependancies.runtime
             implementation root.GoogleLifeArchDependancies.extension
@@ -59,4 +64,5 @@ dependencies
             implementation root.reactiveDependencies.rxandroid
             implementation root.reactiveDependencies.rxjava
 
+            implementation 'com.android.support.constraint:constraint-layout:1.1.2'
         }

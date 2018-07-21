@@ -20,7 +20,7 @@ import static com.app.mvvm_model.utils.Constants.UNSUPPORTED_OPERATION;
 
 public class MovieRemoteDataSource implements MovieDataSource {
     private MovieService service;
-
+private  String extra="";
     @Inject
     public MovieRemoteDataSource(MovieService service) {
         this.service = service;
@@ -28,7 +28,7 @@ public class MovieRemoteDataSource implements MovieDataSource {
 
     @Override
     public Flowable<List<Movie>> loadMovies(boolean forceRemote) {
-        return service.LoadMoviesByTitle(Constants.OMDP_API_KEY, Constants.CONST_SEARCH_TEST_TITLE).map(MovieResponse::getMovies);
+        return service.LoadMoviesByTitle(extra,Constants.OMDP_API_KEY, Constants.CONST_SEARCH_TEST_TITLE).map(MovieResponse::getMovies);
     }
 
     @Override

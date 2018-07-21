@@ -3,6 +3,7 @@ package com.app.mvvm_model;
 import android.app.Application;
 
 import com.app.mvvm_model.injection.AppModule;
+import com.app.mvvm_model.injection.movie.DaggerMovieInteractorComponent;
 import com.app.mvvm_model.injection.movie.MovieInteractorComponent;
 
 /**
@@ -21,6 +22,7 @@ public class Movie_Application extends Application
     }
     private void initializeDependencies()
     {
+
         interactorComponent = DaggerMovieInteractorComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
