@@ -64,5 +64,4 @@ dependencies
             implementation root.reactiveDependencies.rxandroid
             implementation root.reactiveDependencies.rxjava
 
-            implementation 'com.android.support.constraint:constraint-layout:1.1.2'
         }
