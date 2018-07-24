@@ -11,6 +11,7 @@ import retrofit2.http.Url;
 
 public interface MovieService
 {
+    //s
     @GET()
     Flowable<MovieResponse>LoadMoviesByTitle(@Url String url, @Query("apikey") String ApiKey, @Query("s") String title);
 }
