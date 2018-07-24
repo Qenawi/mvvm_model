@@ -54,7 +54,7 @@ public class MoviesActivity extends BaseActivity implements MoviesContract.View 
     {
         // Setup recycler view
         adapter = new MoviesAdapter(new ArrayList<>());
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

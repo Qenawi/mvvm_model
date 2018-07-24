@@ -6,6 +6,7 @@ android {
         applicationId root.configuration.package
         minSdkVersion root.configuration.minSdkVersion
         targetSdkVersion root.configuration.targetSdkVersion
+        buildToolsVersion root.configuration.buildToolsVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -63,5 +64,11 @@ dependencies
             // RxJava
             implementation root.reactiveDependencies.rxandroid
             implementation root.reactiveDependencies.rxjava
+            // Glide
+            implementation root.glideDependancies.glide
+            annotationProcessor root.glideDependancies.glideAndroidProcessor
+            // multidex
+          //  implementation root.developerDependancies.multidex
+
 
         }

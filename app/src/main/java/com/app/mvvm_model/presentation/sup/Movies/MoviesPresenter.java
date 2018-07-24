@@ -36,7 +36,8 @@ public class MoviesPresenter implements MoviesContract.Presenter, LifecycleObser
     private CompositeDisposable disposable;
 
     @Inject
-    MoviesPresenter(MovieUseCase interactor, MoviesContract.View view, @RunOn(IO) Scheduler ioScheduler, @RunOn(UI) Scheduler mainScheduler) {
+    MoviesPresenter(MovieUseCase interactor, MoviesContract.View view, @RunOn(IO) Scheduler ioScheduler, @RunOn(UI) Scheduler mainScheduler)
+    {
         this.interactor = interactor;
         this.view = view;
         this.ioScheduler = ioScheduler;

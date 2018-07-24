@@ -15,15 +15,15 @@ buildscript {
     }
 }
 ext {
-    supportLibrayVersion = '26.1.0'
+    supportLibrayVersion = '27.0.2'
     constraintLayoutVersion = '1.0.2'
     configuration = [
 
             package          : "com.app.mvvm_model",
-            compileSdkVersion: 26,
-            targetSdkVersion : 26,
+            compileSdkVersion:27,
+            targetSdkVersion : 28,
             minSdkVersion    : 21,
-            buildToolsVersion: "23.0.1",
+            buildToolsVersion: "27.0.2",
                      ]
 
 
@@ -60,6 +60,7 @@ ext {
     okhttpVersion = '3.8.0'
 
     squareDependencies = [
+
 
             retrofit       : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             adapter_rx_java: "com.squareup.retrofit2:adapter-rxjava2:${retrofitRxVersion}",
@@ -113,14 +114,24 @@ ext {
 
     leakcanaryVersion = '1.5.4'
     stethoVersion = '1.5.0'
-
+    multidexVersion='1.0.3'
     developerDependancies = [
+            multidex:"com.android.support:multidex:${multidexVersion}",
             stetho           : "com.facebook.stetho:stetho:${stethoVersion}",
             stethoOkHttp     : "com.facebook.stetho:stetho-okhttp3:${stethoVersion}",
             leakCanaryDebug  : "com.squareup.leakcanary:leakcanary-android:${leakcanaryVersion}",
             leakCanaryRelease: "com.squareup.leakcanary:leakcanary-android-no-op:${leakcanaryVersion}",
             leakCanaryTest   : "com.squareup.leakcanary:leakcanary-android-no-op:${leakcanaryVersion}"
     ]
+
+    GlideVersion='4.5.0'
+    glideDependancies=
+            [
+                    glide:"com.github.bumptech.glide:glide:${GlideVersion}",
+                    glideAndroidProcessor:"com.github.bumptech.glide:compiler:${GlideVersion}"
+
+            ]
+
 }
 
 allprojects {

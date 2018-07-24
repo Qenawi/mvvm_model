@@ -2,6 +2,7 @@ package com.app.mvvm_model.presentation.sup.Movies;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -12,12 +13,11 @@ import butterknife.ButterKnife;
 
 public class MoviesViewHolder extends RecyclerView.ViewHolder
 {
-    @BindView(R.id.title_text)
-    TextView titleText;
-    @BindView(R.id.user_text)
-    TextView userText;
-    @BindView(R.id.created_time_text)
-    TextView createdTimeText;
+    @BindView(R.id.imageView)
+    ImageView src;
+    @BindView(R.id.textView)
+    TextView title;
+
 
     public MoviesViewHolder(View itemView)
     {

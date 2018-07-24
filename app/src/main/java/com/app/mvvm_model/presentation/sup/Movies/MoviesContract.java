@@ -19,12 +19,9 @@ public interface MoviesContract {
         void showNoDataMessage();
         void showErrorMessage(String error);
     }
-
     interface Presenter extends BasePresenter<View>
     {
         void loadMovies(boolean onlineRequired);
-
         void search(String MovieTitle);
-
     }
 }

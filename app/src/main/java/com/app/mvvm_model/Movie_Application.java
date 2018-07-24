@@ -20,6 +20,13 @@ public class Movie_Application extends Application
         super.onCreate();
         initializeDependencies();
     }
+/*
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
+*/
     private void initializeDependencies()
     {
 

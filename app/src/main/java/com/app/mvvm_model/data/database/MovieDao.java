@@ -21,8 +21,8 @@ public interface MovieDao
     @Query("SELECT * FROM " + Constants.MOVIES_TABLE_NAME)
     Flowable<List<Movie>> getAllMovies();
 
-    @Query("SELECT * FROM " + Constants.MOVIES_TABLE_NAME + " WHERE imdbID == :id")
-    Flowable<Movie> getMovieById(String id);
+    @Query("SELECT * FROM " + Constants.MOVIES_TABLE_NAME + " WHERE id == :id")
+    Flowable<Movie> getMovieById(int id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Movie movie);
