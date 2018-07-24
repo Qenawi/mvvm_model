@@ -1,10 +1,14 @@
 package com.app.mvvm_model.presentation.sup.Movies;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -70,6 +74,12 @@ public class MoviesActivity extends BaseActivity implements MoviesContract.View 
 
     @Override
     public void hideLoading() {
+
+    }
+
+    @Override
+    public void showLoading()
+    {
 
     }
 

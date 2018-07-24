@@ -14,7 +14,7 @@ public interface MoviesContract {
         void showMovies(List<Movie>list);
 
         void hideLoading();
-
+        void showLoading();
         void clearMovies();
         void showNoDataMessage();
         void showErrorMessage(String error);

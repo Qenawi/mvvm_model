@@ -67,7 +67,9 @@ loadMovies(false);
     }
 
     @Override
-    public void loadMovies(boolean onlineRequired) {
+    public void loadMovies(boolean onlineRequired)
+    {
+        view.showLoading();
         // Clear old data on view
         view.clearMovies();
         addDisposable(interactor.loadMovies(onlineRequired).
