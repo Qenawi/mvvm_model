@@ -13,7 +13,9 @@ import io.reactivex.Flowable;
 public interface MovieDataSource
 
 {
-    Flowable<List<Movie>> loadMovies(boolean forceRemote);
+    Flowable<List<Movie>> loadPopular(boolean forceRemote );
+    Flowable<List<Movie>> loadTopRated(boolean forceRemote );
     void addMovie(Movie movie);
+    void clearDataByTag(String Tag);
     void clearData();
 }

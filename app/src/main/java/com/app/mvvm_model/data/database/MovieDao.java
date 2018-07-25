@@ -16,16 +16,21 @@ import io.reactivex.Flowable;
  * Created by Andorid-win on 7/18/2018.
  */
 @Dao
-public interface MovieDao
-{
+public interface MovieDao {
     @Query("SELECT * FROM " + Constants.MOVIES_TABLE_NAME)
     Flowable<List<Movie>> getAllMovies();
+
+    @Query("SELECT * FROM " + Constants.MOVIES_TABLE_NAME + " WHERE Tag ==:Tag ")
+    Flowable<List<Movie>> getMoviesByTag(String Tag);
 
     @Query("SELECT * FROM " + Constants.MOVIES_TABLE_NAME + " WHERE id == :id")
     Flowable<Movie> getMovieById(int id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Movie movie);
+
+    @Query("DELETE FROM " + Constants.MOVIES_TABLE_NAME + " WHERE Tag ==:Tag ")
+    void deleteByTaG(String Tag);
 
     @Query("DELETE FROM " + Constants.MOVIES_TABLE_NAME)
     void deleteAll();

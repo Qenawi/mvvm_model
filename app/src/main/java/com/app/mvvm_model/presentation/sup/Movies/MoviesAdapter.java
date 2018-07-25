@@ -12,6 +12,10 @@ import com.app.mvvm_model.presentation.base.BaseRecyclerViewAdapter;
 import com.app.mvvm_model.utils.Constants;
 import com.bumptech.glide.Glide;
 
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.security.InvalidParameterException;
 import java.util.List;
 
@@ -73,8 +77,9 @@ public class MoviesAdapter extends BaseRecyclerViewAdapter<MoviesViewHolder> {
 
     private void OnBind(Movie movie, MoviesViewHolder viewHolder)
     {
+        RequestOptions myOptions = new RequestOptions().transforms(new FitCenter(),new RoundedCorners(10));
         viewHolder.title.setText(movie.getTitle());
         String Poster_Path= Constants.Movies.getImageBaseUrl("w500")+movie.getBackdropPath();
-       Glide.with(c).load(Poster_Path).into(viewHolder.src);
+       Glide.with(c).load(Poster_Path).apply(myOptions).into(viewHolder.src);
     }
 }

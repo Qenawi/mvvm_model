@@ -5,6 +5,7 @@ import android.support.annotation.VisibleForTesting;
 import com.app.mvvm_model.data.model.Movie;
 import com.app.mvvm_model.usecase.local.Local;
 import com.app.mvvm_model.usecase.remote.Remote;
+import com.app.mvvm_model.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,40 +24,78 @@ public class MovieUseCase implements MovieDataSource {
     private MovieDataSource localDataSource;
     private MovieDataSource remoteDataSource;
     @VisibleForTesting
-    List<Movie> caches;
+    List<Movie> PopularCaches;
+    List<Movie> TopCaches;
+
 
     @Inject
-    public MovieUseCase(@Remote MovieDataSource remoteDataSource, @Local MovieDataSource localDataSource) {
+    public MovieUseCase(@Remote MovieDataSource remoteDataSource, @Local MovieDataSource localDataSource)
+    {
         this.remoteDataSource = remoteDataSource;
         this.localDataSource = localDataSource;
-        this.caches = new ArrayList<>();
+        this.PopularCaches = new ArrayList<Movie>();
+        this.TopCaches = new ArrayList<Movie>();
     }
-
     @Override
-    public Flowable<List<Movie>> loadMovies(boolean isRemote) {
-        if (isRemote) {
-            return refreshData();
+    public Flowable<List<Movie>> loadPopular(boolean isRemote)
+    {
+        if (isRemote)
+        {
+            return refreshPopData();
         } else {
-            if (caches.size() > 0) {
+            if (PopularCaches.size() > 0)
+            {
                 // if cache is available, return it immediately
-                return Flowable.just(caches);
+                return Flowable.just(PopularCaches);
             } else {
-                return localDataSource.loadMovies(false).
+                return localDataSource.loadPopular(false).
                         take(1).flatMap(Flowable::fromIterable).
-                        doOnNext(movie -> caches.add(movie))
+                        doOnNext(movie ->
+                                PopularCaches.add(movie))
                         .toList()
                         .toFlowable().filter(list -> !list.isEmpty())
                         .switchIfEmpty(
-                                refreshData()
+                                refreshPopData()
                         );
             }//else
         }//else
+    }
 
+    @Override
+    public Flowable<List<Movie>> loadTopRated(boolean isRemote)
+    {
+        if (isRemote)
+        {
+            return refreshTopData();
+        } else {
+            if (TopCaches.size() > 0)
+            {
+                // if cache is available, return it immediately
+                return Flowable.just(TopCaches);
+            } else {
+                return localDataSource.loadTopRated(false).
+                        take(1).flatMap(Flowable::fromIterable).
+                        doOnNext(movie ->
+                                TopCaches.add(movie))
+                        .toList()
+                        .toFlowable().filter(list -> !list.isEmpty())
+                        .switchIfEmpty(
+                                refreshTopData()
+                        );
+            }//else
+        }//else
     }
 
 
     @Override
-    public void addMovie(Movie movie) {
+    public void addMovie(Movie movie)
+    {
+        throw new UnsupportedOperationException(UNSUPPORTED_OPERATION);
+    }
+
+    @Override
+    public void clearDataByTag(String Tag)
+    {
         throw new UnsupportedOperationException(UNSUPPORTED_OPERATION);
     }
 
@@ -64,24 +103,40 @@ public class MovieUseCase implements MovieDataSource {
     public void clearData() {
         throw new UnsupportedOperationException(UNSUPPORTED_OPERATION);
     }
-
-
     /**
      * Fetches data from remote source.
      * Save it into both local database and cache.
      *
      * @return the Flowable of newly fetched data.
      */
-    private Flowable<List<Movie>> refreshData() {
-        return remoteDataSource.loadMovies(true).doOnNext(list ->
+
+    private Flowable<List<Movie>> refreshPopData()
+    {
+        return remoteDataSource.loadPopular(true).doOnNext(list ->
         {
             // Clear cache
-            caches.clear();
+            PopularCaches.clear();
             // Clear data in local storage
-            localDataSource.clearData();
+            localDataSource.clearDataByTag(Constants.DAO_TAGS.PopularTag);
         }).flatMap(Flowable::fromIterable).doOnNext(movie ->
         {
-            caches.add(movie);
+            movie.setTag(Constants.DAO_TAGS.PopularTag);
+            PopularCaches.add(movie);
+            localDataSource.addMovie(movie);
+        }).toList().toFlowable();
+    }
+    private Flowable<List<Movie>> refreshTopData()
+    {
+        return remoteDataSource.loadTopRated(true).doOnNext(list ->
+        {
+            // Clear cache
+            TopCaches.clear();
+            // Clear data in local storage
+            localDataSource.clearDataByTag(Constants.DAO_TAGS.TopRatedTag);
+        }).flatMap(Flowable::fromIterable).doOnNext(movie ->
+        {
+            movie.setTag(Constants.DAO_TAGS.TopRatedTag);
+            TopCaches.add(movie);
             localDataSource.addMovie(movie);
         }).toList().toFlowable();
     }

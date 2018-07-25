@@ -11,12 +11,15 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 /**
  * Created by Andorid-win on 7/18/2018.
  */
 @Entity(tableName = Constants.MOVIES_TABLE_NAME)
 
-public class Movie {
+public class Movie
+{
     @SerializedName("vote_count")
     @Expose
     private Integer voteCount;
@@ -62,6 +65,20 @@ public class Movie {
     @Expose
     private String releaseDate;
 
+    @Nullable
+    public String getTag()
+    {
+        return Tag;
+    }
+
+    public void setTag(@Nullable String tag)
+    {
+        Tag = tag;
+    }
+
+    @Nullable
+    @SerializedName("movie_tag")
+    private String Tag="null";
     public Integer getVoteCount() {
         return voteCount;
     }

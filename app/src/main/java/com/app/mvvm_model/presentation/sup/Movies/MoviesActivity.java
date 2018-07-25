@@ -34,17 +34,17 @@ import butterknife.ButterKnife;
 
 public class MoviesActivity extends BaseActivity implements MoviesContract.View {
 
-
     @BindView(R.id.popular_rv)
     RecyclerView recyclerView;
+    @BindView(R.id.Most_rv)
+    RecyclerView Most_rv;
     private MoviesAdapter adapter;
-    
+    private MoviesAdapter adapterTop;
     @Inject
     MoviesPresenter presenter;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState)
-    {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movies_activity);
         ButterKnife.bind(this);
@@ -54,16 +54,19 @@ public class MoviesActivity extends BaseActivity implements MoviesContract.View 
         initUI();
     }
 
-    private void initUI()
-    {
+    private void initUI() {
         // Setup recycler view
         adapter = new MoviesAdapter(new ArrayList<>());
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+        adapterTop = new MoviesAdapter(new ArrayList<>());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        Most_rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        Most_rv.setAdapter(adapterTop);
+        Most_rv.setItemAnimator(new DefaultItemAnimator());
         adapter.setOnItemClickListener(
-                (view, position) -> showNotification(position+""));
+                (view, position) -> showNotification(position + ""));
     }
 
 
@@ -73,13 +76,17 @@ public class MoviesActivity extends BaseActivity implements MoviesContract.View 
     }
 
     @Override
+    public void showMoviesTop(List<Movie> list) {
+        adapterTop.replaceData(list);
+    }
+
+    @Override
     public void hideLoading() {
 
     }
 
     @Override
-    public void showLoading()
-    {
+    public void showLoading() {
 
     }
 
@@ -89,9 +96,8 @@ public class MoviesActivity extends BaseActivity implements MoviesContract.View 
     }
 
     @Override
-    public void showNoDataMessage()
-    {
-showNotification("NO DATA PLZ RELOAD APP :D");
+    public void showNoDataMessage() {
+        showNotification("NO DATA PLZ RELOAD APP :D");
     }
 
     @Override
@@ -99,8 +105,7 @@ showNotification("NO DATA PLZ RELOAD APP :D");
         showNotification(error);
     }
 
-    private void showNotification(String message)
-    {
-Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    private void showNotification(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

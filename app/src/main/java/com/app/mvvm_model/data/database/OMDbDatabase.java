@@ -8,7 +8,7 @@ import com.app.mvvm_model.data.model.Movie;
 /**
  * Created by Andorid-win on 7/18/2018.
  */
-@Database(entities = Movie.class, version = 2)
+@Database(entities = Movie.class, version = 3)
 public abstract class OMDbDatabase extends RoomDatabase
 {
     public abstract MovieDao movieDao();

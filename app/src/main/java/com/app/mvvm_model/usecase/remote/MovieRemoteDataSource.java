@@ -28,14 +28,29 @@ public class MovieRemoteDataSource implements MovieDataSource {
     }
 
     @Override
-    public Flowable<List<Movie>> loadMovies(boolean forceRemote) {
+    public Flowable<List<Movie>> loadPopular(boolean forceRemote)
+    {
         return service.LoadMoviesPop(Constants.TMDP_API_KEY).map(MovieResponse::getMovies);
+
     }
 
     @Override
-    public void addMovie(Movie movie)
+    public Flowable<List<Movie>> loadTopRated(boolean forceRemote)
+    {
+        return service.LoadMoviesTrated(Constants.TMDP_API_KEY).map(MovieResponse::getMovies);
+    }
+
+    @Override
+    public void addMovie(Movie movie) {
+        //Its not needed for remote source.
+        throw new UnsupportedOperationException(UNSUPPORTED_OPERATION);
+    }
+
+    @Override
+    public void clearDataByTag(String Tag)
     {
         //Its not needed for remote source.
+
         throw new UnsupportedOperationException(UNSUPPORTED_OPERATION);
     }
 

@@ -12,7 +12,7 @@ import java.util.List;
 public interface MoviesContract {
     interface View {
         void showMovies(List<Movie>list);
-
+        void showMoviesTop(List<Movie>list);
         void hideLoading();
         void showLoading();
         void clearMovies();

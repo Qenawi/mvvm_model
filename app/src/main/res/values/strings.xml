@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">mvvm_model </string>
+    <string name="popular">Popular</string>
+    <string name="view_all">View All</string>
 </resources>

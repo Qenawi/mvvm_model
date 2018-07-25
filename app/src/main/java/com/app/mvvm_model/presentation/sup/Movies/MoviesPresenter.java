@@ -17,6 +17,8 @@ import javax.inject.Inject;
 import io.reactivex.Scheduler;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.internal.schedulers.IoScheduler;
 
 import static com.app.mvvm_model.rx.SchedulerType.IO;
 import static com.app.mvvm_model.rx.SchedulerType.UI;
@@ -56,7 +58,7 @@ public class MoviesPresenter implements MoviesContract.Presenter, LifecycleObser
     public void onAttach()
     {
         Log.v("ATTACHED","ATTACHED");
-loadMovies(false);
+        loadMovies(false);
     }
 
     @Override
@@ -72,13 +74,13 @@ loadMovies(false);
         view.showLoading();
         // Clear old data on view
         view.clearMovies();
-        addDisposable(interactor.loadMovies(onlineRequired).
+        addDisposable(interactor.loadPopular(onlineRequired).
                 subscribeOn(ioScheduler).
                 observeOn(mainScheduler).
-                subscribe(this::handleMovies, this::handleError, () -> view.hideLoading()));
+                subscribe(this::handleMovies, this::handleError, () -> addDisposable(interactor.loadTopRated(onlineRequired).subscribeOn(ioScheduler).observeOn(mainScheduler).subscribe(this::handleMovies_Top))));
+
 
     }
-
     private void addDisposable(Disposable disposable) {
         this.disposable.add(disposable);
     }
@@ -88,17 +90,31 @@ loadMovies(false);
 
     }
 
-    private void handleError(Throwable error) {
+    private void handleError(Throwable error)
+    {
         view.hideLoading();
         view.showErrorMessage(error.getLocalizedMessage());
     }
 
-    private void handleMovies(List<Movie> questionList) {
-        view.hideLoading();
-        if (questionList != null && !questionList.isEmpty()) {
+    private void handleMovies(List<Movie> questionList)
+    {
+      //  view.hideLoading();
+        if (questionList != null && !questionList.isEmpty())
+        {
             view.showMovies(questionList);
         } else {
             view.showNoDataMessage();
         }
+    }
+    private void handleMovies_Top(List<Movie> questionList)
+    {
+        view.hideLoading();
+        if (questionList != null && !questionList.isEmpty())
+        {
+            view.showMoviesTop(questionList);
+        } else {
+            view.showNoDataMessage();
+        }
+
     }
 }
