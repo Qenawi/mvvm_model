@@ -26,11 +26,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
+            <include
+                layout="@layout/toolbar"
+                />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:background="@color/blue_grey_900"
+                android:layout_alignParentBottom="true"
+                android:layout_height="0.5dp"/>
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/Popular_LO"
                 android:layout_width="match_parent"
-                android:layout_height="370dp">
+                android:layout_height="300dp">
 
                 <android.support.constraint.Guideline
                     android:id="@+id/guideline"
@@ -49,7 +56,7 @@
                     android:paddingRight="7dp"
                     android:paddingLeft="7dp"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="19sp"
+                    android:textSize="17sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/headerGuideLine"
                     app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -73,7 +80,7 @@
                     android:includeFontPadding="false"
                     android:text="@string/view_all"
                     android:textColor="@android:color/holo_orange_dark"
-                    android:textSize="19sp"
+                    android:textSize="17sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/headerGuideLine"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +105,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/Most_LO"
                 android:layout_width="match_parent"
-                android:layout_height="370dp">
+                android:layout_height="300dp">
 
                 <android.support.constraint.Guideline
                     android:id="@+id/guideline_MostLO"
@@ -113,11 +120,11 @@
                     android:layout_height="0dp"
                     android:gravity="center_vertical"
                     android:includeFontPadding="false"
-                    android:text="@string/popular"
+                    android:text="@string/top_rated"
                     android:paddingRight="7dp"
                     android:paddingLeft="7dp"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="19sp"
+                    android:textSize="17sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/headerGuideLine_Most"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_MostLO"
@@ -139,7 +146,7 @@
                     android:includeFontPadding="false"
                     android:text="@string/view_all"
                     android:textColor="@android:color/holo_orange_dark"
-                    android:textSize="19sp"
+                    android:textSize="17sp"
                     android:paddingRight="7dp"
                     android:paddingLeft="7dp"
                     android:textStyle="bold"
