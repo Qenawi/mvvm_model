@@ -1,9 +1,12 @@
-package com.app.mvvm_model.usecase.remote;
+package com.app.mvvm_model.usecase.DetailMovie.remote;
 
+import com.app.mvvm_model.data.api.DetailMovie.DetailResponse;
+import com.app.mvvm_model.data.api.DetailMovie.DetailService;
 import com.app.mvvm_model.data.api.MovieResponse;
 import com.app.mvvm_model.data.api.MovieService;
 import com.app.mvvm_model.data.model.Movie;
-import com.app.mvvm_model.usecase.MovieDataSource;
+import com.app.mvvm_model.usecase.DetailMovie.MovieDetailDataSource;
+import com.app.mvvm_model.usecase.Movie.MovieDataSource;
 import com.app.mvvm_model.utils.Constants;
 
 import java.util.List;
@@ -18,36 +21,29 @@ import static com.app.mvvm_model.utils.Constants.UNSUPPORTED_OPERATION;
  * Created by Andorid-win on 7/18/2018.
  */
 
-public class MovieRemoteDataSource implements MovieDataSource {
-    private MovieService service;
-    private String extra = "";
-
+public class MovieDetailRemoteDataSource implements MovieDetailDataSource {
+    private DetailService service;
     @Inject
-    public MovieRemoteDataSource(MovieService service) {
+    public MovieDetailRemoteDataSource(DetailService service) {
         this.service = service;
     }
 
     @Override
-    public Flowable<List<Movie>> loadPopular(boolean forceRemote)
+    public Flowable<DetailResponse> loadMovieDetails(boolean forceRemote,int MovieID)
     {
-        return service.LoadMoviesPop(Constants.TMDP_API_KEY).map(MovieResponse::getMovies);
+        return service.Get_MovieDetails(Constants.Movies.getMovieDetailUrl(MovieID),Constants.TMDP_API_KEY);
 
     }
 
-    @Override
-    public Flowable<List<Movie>> loadTopRated(boolean forceRemote)
-    {
-        return service.LoadMoviesTrated(Constants.TMDP_API_KEY).map(MovieResponse::getMovies);
-    }
 
     @Override
-    public void addMovie(Movie movie) {
+    public void addMovie(DetailResponse movie) {
         //Its not needed for remote source.
         throw new UnsupportedOperationException(UNSUPPORTED_OPERATION);
     }
 
     @Override
-    public void clearDataByTag(String Tag)
+    public void clearDataByID(int id)
     {
         //Its not needed for remote source.
 
@@ -55,7 +51,8 @@ public class MovieRemoteDataSource implements MovieDataSource {
     }
 
     @Override
-    public void clearData() {
+    public void clearData()
+    {
         //Its not needed for remote source.
 
         throw new UnsupportedOperationException(UNSUPPORTED_OPERATION);

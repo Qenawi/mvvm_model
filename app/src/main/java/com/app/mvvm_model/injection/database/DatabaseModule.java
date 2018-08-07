@@ -3,6 +3,7 @@ package com.app.mvvm_model.injection.database;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 
+import com.app.mvvm_model.data.database.DetailsDao.DetailMovieDao;
 import com.app.mvvm_model.data.database.MovieDao;
 import com.app.mvvm_model.data.database.OMDbDatabase;
 import com.app.mvvm_model.utils.Constants;
@@ -38,5 +39,11 @@ public class DatabaseModule
     MovieDao provideMovieDao(OMDbDatabase OMDbDb)
     {
         return OMDbDb.movieDao();
+    }
+    @Provides
+    @Singleton
+    DetailMovieDao provideDetailMovieDao(OMDbDatabase OMDbDb)
+    {
+        return OMDbDb.detailMovieDao();
     }
 }

@@ -3,7 +3,7 @@ package com.app.mvvm_model.injection.movie;
 import com.app.mvvm_model.injection.AppModule;
 import com.app.mvvm_model.injection.database.DatabaseModule;
 import com.app.mvvm_model.injection.service.ApiServiceModule;
-import com.app.mvvm_model.usecase.MovieUseCase;
+import com.app.mvvm_model.usecase.Movie.MovieUseCase;
 
 import javax.inject.Singleton;
 

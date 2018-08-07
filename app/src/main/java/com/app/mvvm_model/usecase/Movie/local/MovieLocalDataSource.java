@@ -1,8 +1,8 @@
-package com.app.mvvm_model.usecase.local;
+package com.app.mvvm_model.usecase.Movie.local;
 
 import com.app.mvvm_model.data.database.MovieDao;
 import com.app.mvvm_model.data.model.Movie;
-import com.app.mvvm_model.usecase.MovieDataSource;
+import com.app.mvvm_model.usecase.Movie.MovieDataSource;
 import com.app.mvvm_model.utils.Constants;
 
 import java.util.List;

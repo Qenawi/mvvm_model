@@ -1,14 +1,21 @@
 package com.app.mvvm_model.data.api.DetailMovie;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
+
+import com.app.mvvm_model.data.database.DetailsDao.DetailMovieConvertor;
+import com.app.mvvm_model.data.database.GenreIDsConverter;
 import com.app.mvvm_model.data.model.Genre;
 import com.app.mvvm_model.data.model.ProductionCompany;
 import com.app.mvvm_model.data.model.ProductionCountry;
 import com.app.mvvm_model.data.model.SpokenLanguage;
+import com.app.mvvm_model.utils.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
+@Entity(tableName = Constants.MOVIES_TABLE_NAME_DETAILS)
 public class DetailResponse
 {
 
@@ -18,20 +25,15 @@ public class DetailResponse
     @SerializedName("backdrop_path")
     @Expose
     private String backdropPath;
-    @SerializedName("belongs_to_collection")
-    @Expose
-    private Object belongsToCollection;
     @SerializedName("budget")
     @Expose
     private Integer budget;
     @SerializedName("genres")
     @Expose
     private List<Genre> genres = null;
-    @SerializedName("homepage")
-    @Expose
-    private Object homepage;
     @SerializedName("id")
     @Expose
+    @PrimaryKey
     private Integer id;
     @SerializedName("imdb_id")
     @Expose
@@ -104,14 +106,6 @@ public class DetailResponse
         this.backdropPath = backdropPath;
     }
 
-    public Object getBelongsToCollection() {
-        return belongsToCollection;
-    }
-
-    public void setBelongsToCollection(Object belongsToCollection) {
-        this.belongsToCollection = belongsToCollection;
-    }
-
     public Integer getBudget() {
         return budget;
     }
@@ -128,13 +122,7 @@ public class DetailResponse
         this.genres = genres;
     }
 
-    public Object getHomepage() {
-        return homepage;
-    }
 
-    public void setHomepage(Object homepage) {
-        this.homepage = homepage;
-    }
 
     public Integer getId() {
         return id;

@@ -1,10 +1,10 @@
 package com.app.mvvm_model.injection.movie;
 
-import com.app.mvvm_model.usecase.MovieDataSource;
-import com.app.mvvm_model.usecase.local.Local;
-import com.app.mvvm_model.usecase.local.MovieLocalDataSource;
-import com.app.mvvm_model.usecase.remote.MovieRemoteDataSource;
-import com.app.mvvm_model.usecase.remote.Remote;
+import com.app.mvvm_model.usecase.Movie.MovieDataSource;
+import com.app.mvvm_model.usecase.Local;
+import com.app.mvvm_model.usecase.Movie.local.MovieLocalDataSource;
+import com.app.mvvm_model.usecase.Movie.remote.MovieRemoteDataSource;
+import com.app.mvvm_model.usecase.Remote;
 
 import javax.inject.Singleton;
 

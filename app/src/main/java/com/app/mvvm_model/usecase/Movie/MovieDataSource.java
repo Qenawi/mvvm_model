@@ -1,4 +1,4 @@
-package com.app.mvvm_model.usecase;
+package com.app.mvvm_model.usecase.Movie;
 
 import com.app.mvvm_model.data.model.Movie;
 

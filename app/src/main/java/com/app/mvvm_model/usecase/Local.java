@@ -1,4 +1,4 @@
-package com.app.mvvm_model.usecase.local;
+package com.app.mvvm_model.usecase;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

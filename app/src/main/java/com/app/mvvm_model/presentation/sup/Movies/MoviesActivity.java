@@ -1,5 +1,6 @@
 package com.app.mvvm_model.presentation.sup.Movies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ import com.app.mvvm_model.data.model.Movie;
 import com.app.mvvm_model.injection.movie.DaggerMoviesComponent;
 import com.app.mvvm_model.injection.movie.MoviesPresenterModule;
 import com.app.mvvm_model.presentation.base.BaseActivity;
+import com.app.mvvm_model.presentation.sup.MovieDetail.DetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +68,8 @@ public class MoviesActivity extends BaseActivity implements MoviesContract.View 
         Most_rv.setAdapter(adapterTop);
         Most_rv.setItemAnimator(new DefaultItemAnimator());
         adapter.setOnItemClickListener(
-                (view, position) -> showNotification(position + ""));
+                (view, position) -> {startActivity(new Intent(this, DetailActivity.class));}
+        );
     }
 
 

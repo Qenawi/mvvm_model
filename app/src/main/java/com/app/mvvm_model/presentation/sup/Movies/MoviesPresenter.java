@@ -8,7 +8,7 @@ import android.util.Log;
 
 import com.app.mvvm_model.data.model.Movie;
 import com.app.mvvm_model.rx.RunOn;
-import com.app.mvvm_model.usecase.MovieUseCase;
+import com.app.mvvm_model.usecase.Movie.MovieUseCase;
 
 import java.util.List;
 
@@ -17,8 +17,6 @@ import javax.inject.Inject;
 import io.reactivex.Scheduler;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.internal.schedulers.IoScheduler;
 
 import static com.app.mvvm_model.rx.SchedulerType.IO;
 import static com.app.mvvm_model.rx.SchedulerType.UI;

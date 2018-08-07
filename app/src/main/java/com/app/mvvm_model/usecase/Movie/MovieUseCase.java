@@ -1,10 +1,10 @@
-package com.app.mvvm_model.usecase;
+package com.app.mvvm_model.usecase.Movie;
 
 import android.support.annotation.VisibleForTesting;
 
 import com.app.mvvm_model.data.model.Movie;
-import com.app.mvvm_model.usecase.local.Local;
-import com.app.mvvm_model.usecase.remote.Remote;
+import com.app.mvvm_model.usecase.Local;
+import com.app.mvvm_model.usecase.Remote;
 import com.app.mvvm_model.utils.Constants;
 
 import java.util.ArrayList;

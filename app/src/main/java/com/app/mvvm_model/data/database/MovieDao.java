@@ -16,7 +16,8 @@ import io.reactivex.Flowable;
  * Created by Andorid-win on 7/18/2018.
  */
 @Dao
-public interface MovieDao {
+public interface MovieDao
+{
     @Query("SELECT * FROM " + Constants.MOVIES_TABLE_NAME)
     Flowable<List<Movie>> getAllMovies();
 
