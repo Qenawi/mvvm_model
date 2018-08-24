@@ -86,3 +86,9 @@ public class DetailPresenter implements DetailContract.Presenter, LifecycleObser
         view.showErrorMessage(error.getLocalizedMessage());
     }
 }
+
+
+
+
+
+

@@ -52,8 +52,8 @@ public class MovieDetailUseCase implements MovieDetailDataSource {
                         filter(detailResponse -> detailResponse.getId()!=null)
                         .switchIfEmpty
                                 (
-                                refreshDetailData(MovieID)
-                                 );
+                                        refreshDetailData(MovieID)
+                                );
             }//else
         }//else
     }
@@ -86,12 +86,14 @@ public class MovieDetailUseCase implements MovieDetailDataSource {
     {
         return remoteDataSource.loadMovieDetails(true,MovieID).doOnNext
                 (detailResponse ->
-        {
-            // Clear cache + set cache to  new data
-            MovieDetailCache= detailResponse;
-            // Clear data in local storage // and replace it with new data
-            localDataSource.addMovie(detailResponse);
-        }
-        );
+                        {
+                            // Clear cache + set cache to  new data
+                            MovieDetailCache= detailResponse;
+                            // Clear data in local storage // and replace it with new data
+                            localDataSource.addMovie(detailResponse);
+                        }
+                );
     }
 }
+
+
