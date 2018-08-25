@@ -50,10 +50,7 @@ public class MovieDetailUseCase implements MovieDetailDataSource {
             } else {
                 return localDataSource.loadMovieDetails(false,MovieID).
                         filter(detailResponse -> detailResponse.getId()!=null)
-                        .switchIfEmpty
-                                (
-                                        refreshDetailData(MovieID)
-                                );
+                        .switchIfEmpty(refreshDetailData(MovieID));
             }//else
         }//else
     }
