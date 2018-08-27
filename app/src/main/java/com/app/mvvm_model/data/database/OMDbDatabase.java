@@ -12,7 +12,7 @@ import com.app.mvvm_model.data.model.Movie;
 /**
  * Created by Andorid-win on 7/18/2018.
  */
-@Database(entities = {Movie.class,DetailResponse.class}, version = 4)
+@Database(entities = {Movie.class,DetailResponse.class}, version = 1)
 @TypeConverters({DetailMovieConvertor.class})
 public abstract class OMDbDatabase extends RoomDatabase
 {

@@ -11,6 +11,7 @@ import com.app.mvvm_model.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -39,20 +40,18 @@ public class MovieDetailUseCase implements MovieDetailDataSource {
     @Override
     public Flowable<DetailResponse> loadMovieDetails(boolean isRemote, int MovieID)
     {
-        if (isRemote)
-        {
+        if (isRemote) {
             return refreshDetailData(MovieID);
         } else {
-            if (MovieDetailCache!=null)
-            {
+            if (MovieDetailCache != null) {
                 // if cache is available, return it immediately
                 return Flowable.just(MovieDetailCache);
             } else {
-                return localDataSource.loadMovieDetails(false,MovieID).
-                        filter(detailResponse -> detailResponse.getId()!=null)
-                        .switchIfEmpty(refreshDetailData(MovieID));
-            }//else
-        }//else
+                // else return data from local storage
+                return localDataSource.loadMovieDetails(false, MovieID)
+                        .timeout(2, TimeUnit.SECONDS).onErrorResumeNext(refreshDetailData(MovieID)); // If local data is empty, fetch from remote source instead.
+            }
+        }
     }
 
 
